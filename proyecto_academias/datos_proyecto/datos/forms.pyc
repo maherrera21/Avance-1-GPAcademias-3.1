@@ -1,0 +1,34 @@
+#encoding:utf-8 
+from django import forms
+from django.db.models import *
+from datos.models import *
+
+class formularioDefuncionesFetales(forms.Form):
+    anio_def = forms.ChoiceField([(y, y) for y in DefunFetal.objects.values('anio_def').distinct().order_by("anio_def")])
+    sexo = forms.ChoiceField([(y, y) for y in DefunFetal.objects.values('sexo').distinct().order_by("sexo")])
+    sem_gestac = forms.ChoiceField([(y, y) for y in DefunFetal.objects.values('sem_gestac').distinct().order_by("sem_gestac")])
+    edad = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('edad').distinct().order_by("edad")])
+    hijos_vivos = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('hijos_vivos').distinct().order_by("hijos_vivos")])
+    hijos_nac_vivos = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('hijos_nac_vivos').distinct().order_by("hijos_nac_vivos")])
+    hijos_nac_muertos = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('hijos_nac_muertos').distinct().order_by("hijos_nac_muertos")])
+    estado_civil = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('estado_civil').distinct().order_by("estado_civil")])
+    etnia = forms.ChoiceField([(y, y) for y in DatosMadre.objects.values('etnia').distinct().order_by("etnia")])
+
+class formularioDefuncionesGenerales(forms.Form):
+    sexo = forms.ChoiceField([(y, y) for y in DefunGeneral.objects.values('sexo').distinct().order_by("sexo")])
+    anio_nac = forms.ChoiceField([(y, y) for y in DefunGeneral.objects.values('anio_nac').distinct().order_by("anio_nac")])
+    anio_def = forms.ChoiceField([(y, y) for y in DefunGeneral.objects.values('anio_def').distinct().order_by("anio_def")])
+    edad = mforms.ChoiceField([(y, y) for y in DefunGeneral.objects.values('edad').distinct().order_by("edad")])
+    cod_edad = forms.ChoiceField([(y, y) for y in DefunGeneral.objects.values('cod_edad').distinct().order_by("cod_edad")])
+
+
+
+
+#class formularioAsideLocalizacion(forms.Form):
+    #Grupos = forms.ChoiceField([('aves', 'Aves'),('Ganado', 'Ganadería')])
+    ##selectEspecie = forms.ChoiceField([('Todos', 'Todos')])
+    #Especies = forms.ChoiceField([(e.especie, e.especie) for e in Especie.objects.all().distinct().order_by("especie")])
+    ##Especies = forms.ChoiceField([(e.especie, e.especie) for e in Especie.all().distinct().order_by("especie")])
+    #Region = forms.ChoiceField([('REGIÓN COSTA', 'REGIÓN COSTA'),('REGIÓN ORIENTAL', 'REGIÓN ORIENTAL'),('REGIÓN SIERRRA', 'REGIÓN SIERRA')])
+    #Provincia = forms.ChoiceField([(p.provincia, p.provincia) for p in Localizacion.objects.all().distinct().order_by("provincia")])
+    #Year = forms.ChoiceField([(y.year, y.year) for y in Produccion.objects.all().distinct().order_by("year")])
